@@ -1,1 +1,65 @@
-aa
+#1
+a = float (input("Enter a number:"))
+
+b = int(a)
+c = str(a)
+
+print("Output:")
+
+print("Original Input:")
+print(a)
+print("Converted to int:")
+print(b)
+print("Converted to string:")
+print(c)
+
+
+
+#2
+a = input(" Your full name")
+b = 0
+
+for i in range(len(a)):
+    if a[i] == " ":
+        b = i
+
+
+print(b)
+initials = a[0].upper() + "." + a[b+1].upper()
+print("Your Initials are:")
+print(initials)
+
+
+#3
+a = input("enter a string: ")
+string = a[len(a)::-1] 
+print(string)
+
+
+#4
+word = input("enter a word: ")
+index = int(input("enter an index: "))
+
+sword = word[index:len(word)]
+print(sword)
+
+
+#5
+email = input("enter your email address: ")
+
+for i in range(len(email)):
+    if email[i] == "@":
+        b = i+1
+
+print("Your Domain is: ")
+print(email[b:len(email)])
+
+
+#6
+word = input("Input: ")
+
+midpart = word[1:(len(word)-1)]
+
+final = word[len(word)-1] + midpart + word[0]
+
+print(final)
