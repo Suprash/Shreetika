@@ -1,0 +1,125 @@
+#1/5
+
+listss = {1,2,3,4,5,6,7,10,51,23} #euta random list deko ho
+
+for i in listss:
+    if i>50:
+        break
+    if i % 5 != 0: #this part checks out any number that is not divisible by 5.
+        print(i)
+
+#2/5
+
+count = 6
+password = input("Enter a password")
+flag = 0
+length = len(password)
+for i in password:
+    if i == "@" or i == "#" or i== "$" or i == "%" or i == "&": #special character checking
+        flag = 2 #flag used to identity password character use
+    elif i == int: #checks if integer
+        flag = 1
+    else: 
+        flag = 0
+
+if length >= 8 and flag == 2:
+    print("The given Password looks strong")
+
+elif length >=6 and flag == 1:
+    print("The given password looks moderate")
+    
+else:
+    print("The given password looks weak")
+
+
+#3/5
+
+string = input("input a string: ")  
+break_log = [0]  
+wordss = ""  
+
+#shows the places where the gaps are present
+for i in range(len(string)):
+    if string[i] == " ": #checks for gaps
+        break_log.append(i)  # storage
+break_log.append(len(string))  #appends or add the string
+
+print(break_log) 
+
+for i in range(len(break_log) - 1): #takes one minus the range
+    if i % 2 == 0:
+        wordss += string[break_log[i]:break_log[i+1]] + " "  # the first words is kept same
+    else:
+        word = string[break_log[i]:break_log[i+1]].strip() 
+        wordss += word[::-1] + " " 
+
+print(wordss) #prints the new words
+
+
+#4/5
+
+userinput = ["apple", "banana", "apple", "orange", "banana", "banana"]
+
+fruits = {}
+
+for i in userinput:
+    if i in fruits.keys():
+        fruits[i] += 1
+    else:
+        fruits[i] = 1
+
+print(fruits)
+
+
+#5/5
+
+books={}
+
+books = {
+    "The Great Gatsby": 5,
+    "To Kill a Mockingbird": 8,
+    "1984": 6,
+    "Pride and Prejudice": 4,
+    "The Catcher in the Rye": 7
+} #yes chatgpt gave me this dictionary
+
+
+# running code from here mathi ko sab declarations
+
+userbook = input("Enter the book you want")
+userbuy = input("Enter the number of books you want")
+while not(userbuy >=0):
+    print("Enter a valid number, not this:"+str(userbuy))
+    userbuy = input("Enter the number of books you want")
+
+#checking things for debugging
+print(userbook + " " + str(userbuy))
+userbuy= int(userbuy)
+
+#checking the library
+if userbook in books.keys():
+    if userbuy <= books[userbook]:
+        print("Available")
+    else: #if userbuy > books[userbook]:
+        print("Partially Available")
+else:
+    print("Unavailable")
+
+
+
+
+
+
+userinput = ["This","is","good","is"]
+#taking hte inputs and keeping a placeholder for the words
+words = {}
+
+for i in userinput:
+    if i in words.keys(): #checks using the keys of the dictionary
+        words[i] += 1
+        print("found")
+        print(i)
+    else:
+        words[i] = 1
+
+print(words) #prints the dictionary
