@@ -1,0 +1,42 @@
+import pandas as pd
+
+# Step 1: Load the data from the CSV file
+df = pd.read_csv('/mnt/data/earthquakes.csv')
+
+# Step 2: Preview the data to understand its structure
+print("Initial data preview:")
+print(df.head())
+print("\nData information:")
+print(df.info())
+
+# Step 3: Remove duplicate rows
+df = df.drop_duplicates()
+
+# Step 4: Handle missing values
+# For this example, we'll drop rows with missing values in key columns.
+# Adjust the list below based on the columns that are essential in your dataset.
+key_columns = ['time', 'latitude', 'longitude', 'mag']  # Modify these names if needed
+df = df.dropna(subset=key_columns)
+
+# Step 5: Convert columns to appropriate data types
+# Convert the 'time' column to datetime format if it exists.
+if 'time' in df.columns:
+    df['time'] = pd.to_datetime(df['time'], errors='coerce')
+
+# Convert numerical columns to numeric data types.
+num_columns = ['latitude', 'longitude', 'depth', 'mag']  # Update as necessary
+for col in num_columns:
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# After conversion, drop rows where conversion failed (resulting in NaN/NaT)
+df = df.dropna(subset=['time'] + num_columns)
+
+# Optional: Filter out any rows with anomalous data
+# For instance, if negative depths are not expected, remove them:
+if 'depth' in df.columns:
+    df = df[df['depth'] >= 0]
+
+# Step 6: Save the cleaned data to a new CSV file
+df.to_csv('earthquakes_cleaned.csv', index=False)
+print("Data cleaning complete. Cleaned data saved as 'earthquakes_cleaned.csv'.")
